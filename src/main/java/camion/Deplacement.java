@@ -7,6 +7,12 @@ public class Deplacement {
     int vitesse;
     int VITMIN = 1;
     int VITMAX = 100;
+    
+    public Deplacement(int direction, int vitesse, String destination) {
+        this.direction = direction;
+        this.vitesse = vitesse;
+        this.destination = destination;
+    }
 
     public String getDestination() {
         return destination;
@@ -21,7 +27,12 @@ public class Deplacement {
     }
 
     public void setDirection(int direction) {
-        this.direction = direction;
+        if((direction >= 0) && (direction < 360)){
+            this.direction = direction;
+        }
+        else{
+            this.direction = direction - 360;
+        }
     }
 
     public int getVitesse() {
