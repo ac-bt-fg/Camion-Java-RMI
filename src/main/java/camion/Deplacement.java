@@ -40,7 +40,7 @@ public class Deplacement {
     }
 
     public void setVitesse(int vitesse) {
-        if (vitesse < 0)
+        if (vitesse < VITMIN)
             this.vitesse = 0;
         else if (vitesse > VITMAX)
             this.vitesse = VITMAX;

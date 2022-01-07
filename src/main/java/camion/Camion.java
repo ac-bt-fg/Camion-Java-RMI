@@ -116,7 +116,7 @@ public class Camion {
         
         cosinus = (float) cos(dep.getDirection() * 2 * Math.PI / 360);
         sinus = (float) sin(dep.getDirection() * 2 * Math.PI / 360);
-
+        dep.setVitesse(dep.getVitesse() + 3);
         dep_x = cosinus * dep.getVitesse();
         dep_y = sinus * dep.getVitesse();
 
@@ -124,26 +124,74 @@ public class Camion {
         // sauf si la direction est de 90 degré (angle droit)
         if ((dep_x > 0) && (dep_x < 1)) {
             dep_x = 1;
-            dep.setVitesse(dep.getVitesse() + 1);
+            dep.setVitesse(dep.getVitesse() + 3);
             dep.setDirection(dep.getDirection() + 30);
         }
+        
+        if(dep.getVitesse() < 10){
+            dep.setVitesse(dep.getVitesse() + 3);
+        }
+        if(dep.getVitesse() > 10 && dep.getVitesse() < 15){
+            dep.setVitesse(dep.getVitesse() - 3);
+        }
+        
+        if(dep.getVitesse() > 30 ){
+            dep.setVitesse(dep.getVitesse() - 8);
+        }
+        
+        if(dep.getVitesse() < 1 && dep.getVitesse() > 5){
+            dep.setVitesse(dep.getVitesse() + 10);
+            dep.setDirection(dep.getDirection() - 5);
+        }
+        
+        if(dep.getVitesse() == 10 || dep.getVitesse() == 9 || dep.getVitesse() == 8 || dep.getVitesse() == 11 || dep.getVitesse() == 30 ){
+            dep.setVitesse(dep.getVitesse() + 7);
+            dep.setDirection(dep.getDirection() - 3);
+        }
+        
+        if(dep.getVitesse() > 40){
+            dep.setVitesse(dep.getVitesse() + 17);
+            dep.setDirection(dep.getDirection() - 10);
+        }
+        
+        if(dep.getVitesse() == 100){
+            dep.setVitesse(dep.getVitesse() - 47);
+            dep.setDirection(dep.getDirection() + 30);
+        }
+        if(dep.getVitesse() == 32){
+            dep.setVitesse(dep.getVitesse() + 27);
+            dep.setDirection(dep.getDirection() - 30);
+        }
+        
         if ((dep_x < 0) && (dep_x > -1)) {
             dep_x = -150;
-            dep.setVitesse(dep.getVitesse() + -5);
+            dep.setVitesse(dep.getVitesse() -1);
             dep.setDirection(dep.getDirection() - 30);
         }
 
         if ((dep_y > 0) && (dep_y < 1)) {
             dep_y = 1;
-            dep.setVitesse(dep.getVitesse() + 1);
+            dep.setVitesse(dep.getVitesse() + 3);
             dep.setDirection(dep.getDirection() + 30);
         }
         if ((dep_y < 0) && (dep_y > -1)) {
             dep_y = -150;
-            dep.setVitesse(dep.getVitesse() - 5);
+            dep.setVitesse(dep.getVitesse() - 1);
             dep.setDirection(dep.getDirection() - 30);
         }
-
+        
+        if(dep.getDirection() < 1){
+            dep.setDirection(5);
+        }
+        
+        if(dep.getDirection() == 5){
+            dep.setDirection(20);
+        }
+        
+        if(dep.getDirection() > 360){
+            dep.setDirection(120);
+        }
+        
         coord.setX(coord.getX() + (int) dep_x);
         coord.setY(coord.getY() + (int) dep_y);
     }
