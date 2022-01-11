@@ -22,7 +22,7 @@ public class Controleur {
     Boolean ouvrir_communication() {
 
         try {
-            socket = new Socket("localhost", 2011);
+            socket = new Socket("192.168.43.92", 2011);
             return true;
             
         } catch (IOException ex) {

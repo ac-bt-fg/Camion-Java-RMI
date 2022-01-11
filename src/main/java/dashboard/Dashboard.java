@@ -24,7 +24,6 @@ public class Dashboard {
 
     public static Socket socket = null;
     public static String message = "";
-    public static Thread t1;
     static String Nom_camion="";
     static String X="";
     static String Y="";
@@ -39,7 +38,7 @@ public class Dashboard {
         try {
 
             System.out.println("Demande de connexion du tableau de bord");
-            socket = new Socket("127.0.0.1", 2010);
+            socket = new Socket("192.168.43.92", 2010);
             BufferedReader inFromSGCRTR = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
             DashboardJFrame rf = new  DashboardJFrame();

@@ -19,10 +19,11 @@ public class Camion {
     ObjectOutputStream output;
     ObjectInputStream input;
     String numeroPlaque = "";
-//    String etat = "";
-    String[] destinations = {"Dakar", "Thies", "Matam", "Ziguinchor", "Diourbel", "Kaffrine", "Louga", "Kaolack", "Kedouguou", "Saint-Louis"};
+    String[] destinations = {"Dakar", "Thies", "Matam", "Ziguinchor", "Diourbel", 
+        "Kaffrine", "Louga", "Kaolack", "Kedouguou", "Saint-Louis"};
 
-    static final String LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    static final String LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            + "abcdefghijklmnopqrstuvwxyz";
     static final String NUMBERS = "0123456789";
     static SecureRandom rnd = new SecureRandom();
 
@@ -77,11 +78,17 @@ public class Camion {
     }
 
     public void afficher_donnees() {
-        System.out.println("Camion: " + numeroPlaque + "   Localisation: " + coord.getX() + "," + coord.getY() + "," + "   Vitesse: " + dep.getVitesse() + "   Direction: " + dep.getDirection() + "   Destination: " + dep.getDestination());
+        System.out.println("Camion: " + numeroPlaque + 
+                "   Localisation: " + coord.getX() + "," + coord.getY() + "," 
+                        + "   Vitesse: " + dep.getVitesse() + "   Direction: " 
+                + dep.getDirection() + "   Destination: " + dep.getDestination());
     }
     
     String envoyer_caracteristiques(){
-        return "Camion:" + numeroPlaque + ";X:" + coord.getX() + ";Y:" + coord.getY()  + ";Vitesse: " + dep.getVitesse() + ";Direction:" + dep.getDirection() + ";Destination: " + dep.getDestination();
+        return "Camion:" + numeroPlaque + ";X:" + coord.getX() + ";Y:" 
+                + coord.getY()  + ";Vitesse: " + dep.getVitesse() 
+                + ";Direction:" + dep.getDirection() + ";Destination: " 
+                + dep.getDestination();
     }
     
     public Camion() {
@@ -97,21 +104,14 @@ public class Camion {
         coord = new Coordonnees(x, y);
         dep = new Deplacement(direction, vitesse, destination);
     }
-     
-    public void changer_vitesse(int vitesse) {
-          dep.setVitesse(vitesse);
-    }
-
-    public void changer_direction(int direction) {
-        dep.setDirection(direction);
-    }
 
     public void calcul_deplacement() throws IOException {
         float cosinus, sinus;
         float dep_x, dep_y;
+        
 
-        if (dep.getVitesse() <= dep.VITMIN) {
-            System.out.println("Le camion est à l'arrêt\n");
+        if (dep.getVitesse() < dep.VITMIN) {
+            System.out.println("Le camion" + this.numeroPlaque + " est à l'arrêt\n");
         }
         
         cosinus = (float) cos(dep.getDirection() * 2 * Math.PI / 360);
@@ -144,7 +144,9 @@ public class Camion {
             dep.setDirection(dep.getDirection() - 5);
         }
         
-        if(dep.getVitesse() == 10 || dep.getVitesse() == 9 || dep.getVitesse() == 8 || dep.getVitesse() == 11 || dep.getVitesse() == 30 ){
+        if(dep.getVitesse() == 10 || dep.getVitesse() == 9 
+                || dep.getVitesse() == 8 || dep.getVitesse() == 11 
+                || dep.getVitesse() == 30 ){
             dep.setVitesse(dep.getVitesse() + 7);
             dep.setDirection(dep.getDirection() - 3);
         }
@@ -232,5 +234,4 @@ public class Camion {
         }
 
     }
-
 }
